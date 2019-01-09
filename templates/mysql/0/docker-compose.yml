@@ -1,0 +1,39 @@
+version: '2'
+volumes:
+  mysql-data:
+    per_container: true
+    driver: local
+    # driver: rancher-nfs
+
+services:
+  # mysql-lb:
+  #   image: rancher/lb-service-haproxy:v0.9.6
+  #   ports:
+  #     - ${mysql_lb_port}:${mysql_lb_port}
+  #     - ${adminer_port}:${adminer_port}
+  mysql:
+    image: mysql/mysql-server:5.6
+    tty: true
+    stdin_open: true
+    volumes_from:
+      - mysql-volume
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: mysql-volume
+    ports:
+      - 3306
+  mysql-volume:
+    network_mode: none
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    volumes:
+      - mysql-data:/var/lib/mysql
+    entrypoint: /bin/true
+    image: busybox
+  adminer:
+    image: adminer
+    ports:
+      - 8080
+    external_links:
+      - mysql:db

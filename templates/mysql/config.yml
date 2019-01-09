@@ -1,0 +1,6 @@
+name: MySQL
+description: |
+  MySQL — an open-source relational database management system (RDBMS)
+version: v5.6
+maintainer: xujian
+category: Databases

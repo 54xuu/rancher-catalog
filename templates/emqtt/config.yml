@@ -1,0 +1,8 @@
+name: emqtt
+description: |
+  emqtt Broker - Scalable Distributed MQTT Messaging Broker http://emqx.io
+version: "v2.3.11"
+category: IoT
+maintainer: "xujian"
+minimum_rancher_version: v1.0.0
+license:

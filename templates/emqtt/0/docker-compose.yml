@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  emqttd:
+    image: registry.cn-shenzhen.aliyuncs.com/xuu/emqtt:v2.3.11
+    stdin_open: true
+    tty: true
+    ports:
+      - 1883
+      - 8083
+      - 8084
+      - 18083
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name

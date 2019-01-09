@@ -1,0 +1,24 @@
+.catalog:
+  name: redis
+  version: "v4.0"
+  description: |
+    Redis service
+  maintainer: "xujian"
+  minimum_rancher_version: v1.0.0
+  uuid: redis-0
+
+version: '2'
+services:
+  redis:
+    scale: 1
+    start_on_create: true
+    health_check:
+      port: 6379
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+  phpredisadmin:
+    scale: 1
+    start_on_create: true

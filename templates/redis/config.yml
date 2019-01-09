@@ -1,0 +1,8 @@
+name: Redis
+description: |
+  Redis service fork https://github.com/jnylen/rancher-catalog
+version: "v4.0"
+category: Databases
+maintainer: "xujian"
+minimum_rancher_version: v1.0.0
+license:

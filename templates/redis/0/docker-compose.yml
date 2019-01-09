@@ -1,0 +1,36 @@
+version: '2'
+volumes:
+  redis-data:
+    per_container: true
+    driver: local
+
+services:
+  redis:
+    tty: true
+    image: redis:4.0-alpine
+    ports:
+      - 6379
+    volumes_from:
+      - redis-volume
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: redis-volume
+      service.redis.role: master
+  redis-volume:
+    network_mode: none
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    volumes:
+      - redis-data:/data
+    entrypoint: /bin/true
+    image: busybox
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    environment:
+      REDIS_1_HOST: redis
+      REDIS_1_NAME: redisSingle
+    ports:
+      - 80
+    external_links:
+      - redis

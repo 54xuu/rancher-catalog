@@ -1,0 +1,14 @@
+.catalog:
+  name: emqtt
+  version: "v2.3.11"
+  description: |
+    MQTT service
+  maintainer: "xujian"
+  minimum_rancher_version: v1.0.0
+  uuid: emqtt-0
+  
+version: '2'
+services:
+  emqttd:
+    scale: 1
+    start_on_create: true
