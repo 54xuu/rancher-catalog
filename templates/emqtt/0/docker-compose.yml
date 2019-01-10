@@ -2,7 +2,7 @@ version: '2'
 
 services:
   emqttd:
-    image: registry.cn-shenzhen.aliyuncs.com/xuu/emqtt:v2.3.11
+    image: registry.cn-shenzhen.aliyuncs.com/xuu/emqx:2.3.11
     stdin_open: true
     tty: true
     ports:
