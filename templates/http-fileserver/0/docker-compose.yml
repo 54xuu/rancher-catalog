@@ -1,6 +1,8 @@
 version: '2'
 volumes:
   fileserver-data:
+    ## environment级别的共享
+    external: true
     driver: rancher-nfs
 
 services:
@@ -8,9 +10,19 @@ services:
     image: registry.cn-shenzhen.aliyuncs.com/xuu/http-fileserver:0.0.1
     tty: true
     stdin_open: true
-    volumes:
-      - fileserver-data:/upload
+    volumes_from:
+      - fileserver-volume
     labels:
       io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: fileserver-volume
     ports:
       - 8080
+  fileserver-volume:
+    network_mode: none
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    volumes:
+      - fileserver-data:/upload
+    entrypoint: /bin/true
+    image: busybox
