@@ -1,6 +1,6 @@
 name: HTTP File Server
 description: |
-  HTTP File Server
+  HTTP File Server 基于Spring Boot实现本地文件上传。https://github.com/54xuu/docker-http-fileserver
 version: v0.0.1
 maintainer: xujian
 category: Storage
