@@ -1,0 +1,19 @@
+.catalog:
+  name: "http-fileserver"
+  version: "v0.0.1"
+  description: "HTTP File Server"
+  uuid: http-fileserver-0
+  minimum_rancher_version: v1.0.0
+
+version: '2'
+services:
+  fileserver:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 8080
+      unhealthy_threshold: 3
+      interval: 2000
+      strategy: recreate
