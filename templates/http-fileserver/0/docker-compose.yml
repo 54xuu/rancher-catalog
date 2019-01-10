@@ -12,6 +12,5 @@ services:
       - fileserver-data:/upload
     labels:
       io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: fileserver-volume
     ports:
       - 8080
