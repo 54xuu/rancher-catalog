@@ -10,7 +10,6 @@ services:
         - es-client
       labels:
         io.rancher.container.hostname_override: container_name
-        io.rancher.sidekicks: es-client
 
     es-master:
         labels:
