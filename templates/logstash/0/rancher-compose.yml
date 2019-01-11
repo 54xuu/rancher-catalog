@@ -29,7 +29,7 @@
         stack/service link or external service link to elasticsearch
         cluster.
       label: "Elasticsearch stack/service"
-      default: "elasticsearch/es-client"
+      default: "elasticsearch/es-clients"
       required: true
       type: "service"
 logstash-indexer:
