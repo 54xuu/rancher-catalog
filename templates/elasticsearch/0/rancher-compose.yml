@@ -99,6 +99,10 @@ catalog:
             - rancher-ebs
 
 services:
+  cerebro:
+    scale: 1
+    start_on_create: true
+    
   es-master:
     scale: ${minimum_master_nodes}
 
