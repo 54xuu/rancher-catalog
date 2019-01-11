@@ -3,3 +3,4 @@ description: |
   Elasticsearch Cluster
 version: v6.3.2
 category: ELK
+maintainer: "xujian"
