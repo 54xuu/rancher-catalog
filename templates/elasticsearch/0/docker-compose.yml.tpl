@@ -1,7 +1,7 @@
 version: '2'
 services:
     cerebro:
-      image: registry.cn-shenzhen.aliyuncs.com/xuu/cerebro:0.8.1
+      image: lmenezes/cerebro:0.8.1
       stdin_open: true
       tty: true
       ports:
