@@ -1,6 +1,6 @@
 name: Elasticsearch Cluster
 description: |
-  Elasticsearch Cluster
+  Elasticsearch Cluster fork https://github.com/rancher/community-catalog/tree/master/templates/es-cluster
 version: v6.3.2
 category: ELK
 maintainer: "xujian"
