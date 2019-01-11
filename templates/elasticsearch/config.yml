@@ -1,0 +1,5 @@
+name: Elasticsearch Cluster 6.3.2
+description: |
+  Elasticsearch 6.3.2
+version: v6.3.2
+category: ELK

@@ -1,0 +1,109 @@
+version: '2'
+catalog:
+    name: Elasticsearch Cluster
+    version: v6.3.2
+    description: Elasticsearch Cluster
+
+    questions:
+        - variable: "cluster_name"
+          type: "string"
+          required: true
+          label: "Cluster name"
+          description: "Elasticsearch集群名称"
+          default: "es-cluster"
+
+        - variable: "UPDATE_SYSCTL"
+          label: "Update host sysctl:"
+          description: |
+            为了避免vm.max_map_count错误，可以设置为true
+          default: true
+          required: true
+          type: enum
+          options:
+            - false
+            - true
+
+        - variable: "master_heap_size"
+          type: "string"
+          required: true
+          label: "Heap size (master nodes)"
+          description: "Java分配的堆大小 (master nodes)"
+          default: "512m"
+
+        - variable: "master_mem_limit"
+          type: "int"
+          required: true
+          label: "Memory limit in byte (master nodes)"
+          description: "每个ElasticSearch容器的内存限制（字节），至少是堆大小的两倍！(master nodes)"
+          default: 1073741824
+
+        - variable: "data_heap_size"
+          type: "string"
+          required: true
+          label: "Heap size (data nodes)"
+          description: "Java分配的堆大小 (data nodes)"
+          default: "512m"
+
+        - variable: "data_mem_limit"
+          type: "int"
+          required: true
+          label: "Memory limit in byte (data nodes)"
+          description: "每个ElasticSearch容器的内存限制（字节），至少是堆大小的两倍！(data nodes)"
+          default: 1073741824
+
+        - variable: "client_heap_size"
+          type: "string"
+          required: true
+          label: "Heap size (client nodes)"
+          description: "Java分配的堆大小 (client nodes)"
+          default: "512m"
+
+        - variable: "client_mem_limit"
+          type: "int"
+          required: true
+          label: "Memory limit in byte (client nodes)"
+          description: "每个ElasticSearch容器的内存限制（字节），至少是堆大小的两倍！(client nodes)"
+          default: 1073741824
+
+        - variable: "minimum_master_nodes"
+          type: "int"
+          required: true
+          label: "# of minimum Master Nodes"
+          description: "设置Master节点数"
+          default: 3
+
+        - variable: "initial_data_nodes"
+          type: "int"
+          required: true
+          label: "# of initial data nodes"
+          description: "设置Data节点数"
+          default: 2
+
+        - variable: "initial_client_nodes"
+          type: "int"
+          required: true
+          label: "# of initial client nodes"
+          description: "设置Client节点数"
+          default: 1
+
+        - variable: "VOLUME_DRIVER"
+          description: "The VOLUME driver to associate with this server"
+          label: "VOLUME Driver"
+          required: true
+          default: "local"
+          type: enum
+          options:
+            - local
+            - rancher-nfs
+            - rancher-efs
+            - rancher-ebs
+
+services:
+  es-master:
+    scale: ${minimum_master_nodes}
+
+  es-data:
+    scale: ${initial_data_nodes}
+
+  es-client:
+    scale: ${initial_client_nodes}
