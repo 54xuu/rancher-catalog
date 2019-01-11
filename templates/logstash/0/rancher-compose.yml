@@ -5,16 +5,14 @@
   questions:
     - variable: "indexer_filters"
       description: |
-        Logstash indexing tier filters. These will be added
-        directly to filter { } section of logstash.conf
+        logstash.conf 中 filter { } 内部分，inputs 固定从redis里获取。
       label: "Logstash filters"
       type: "multiline"
       required: false
       default: ""
     - variable: "indexer_outputs"
       description: |
-        Logstash indexing tier outputs. These will be added
-        directly to output { } section of logstash.conf
+        logstash.conf 中 output { } 内部分
       label: "Logstash outputs"
       type: "multiline"
       required: true
