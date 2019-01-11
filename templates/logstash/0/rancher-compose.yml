@@ -1,0 +1,50 @@
+.catalog:
+  name: "Logstash"
+  version: "v6.3.2"
+  description: "Logstash"
+  questions:
+    - variable: "indexer_filters"
+      description: |
+        Logstash indexing tier filters. These will be added
+        directly to filter { } section of logstash.conf
+      label: "Logstash filters"
+      type: "multiline"
+      required: false
+      default: ""
+    - variable: "indexer_outputs"
+      description: |
+        Logstash indexing tier outputs. These will be added
+        directly to output { } section of logstash.conf
+      label: "Logstash outputs"
+      type: "multiline"
+      required: true
+      default: |
+        elasticsearch {
+          hosts => ["elasticsearch.rancher.internal:9200"]
+          index  => "%{app}-%{+YYYY.MM.dd}"
+        }
+        stdout {
+          codec => rubydebug
+        }
+    - variable: "elasticsearch_link"
+      description: |
+        stack/service link or external service link to elasticsearch
+        cluster.
+      label: "Elasticsearch stack/service"
+      default: "elasticsearch/es-client"
+      required: true
+      type: "service"
+logstash-indexer:
+  metadata:
+    logstash:
+      inputs: |
+        redis {
+          host => "redis.rancher.internal"
+          port => "6379"
+          data_type => "list"
+          key => "logstash"
+        }
+      filters: |
+        ${indexer_filters}
+      outputs: |
+        ${indexer_outputs}

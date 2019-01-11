@@ -1,0 +1,6 @@
+name: Logstash
+description: |
+  ELK-Logstash
+version: v6.3.2
+category: ELK
+maintainer: "xujian"
